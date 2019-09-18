@@ -1,3 +1,5 @@
+import * as actionTypes from './actions';
+
 const initialState = {
     counter: 0,
     results: []
@@ -6,35 +8,35 @@ const initialState = {
 const reducer = (state = initialState, action)=>{
 
     switch(action.type){
-        case('INCREMENT'):
+        case actionTypes.INCREMENT:
             //this is also another way of changing state immutably
             //can use Object.assign({},state); instead of distributing properties with ...prefix
             //remember this is not a deep clone either
             const newState = Object.assign({},state);
             newState.counter= state.counter + 1;
             return newState;
-        case('DECREMENT'):
+        case actionTypes.DECREMENT:
             return {
                 ...state,
                 counter: state.counter - 1
             }
-        case('ADD'):
+        case actionTypes.ADD:
             return {
                 ...state,
                 counter: state.counter + action.value
             }
-        case('SUBTRACT'):
+        case actionTypes.SUBTRACT:
             return {
                 ...state,
                 counter: state.counter -  action.value
             }
-        case('STORE_RESULT'):
+        case actionTypes.STORE_RESULT:
             return {
                 ...state,
                 //concat returnes a copy of the array adding new
                 results: state.results.concat({id: new Date(), value: state.counter})
             }
-        case('DELETE_RESULT'):
+        case actionTypes.DELETE_RESULT:
 
             const updatedArray = state.results.filter(el => el.id !== action.value)
             return {
