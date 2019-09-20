@@ -5,6 +5,8 @@ export const SUBTRACT = 'SUBTRACT';
 export const STORE_RESULT = 'STORE_RESULT';
 export const DELETE_RESULT = 'DELETE_RESULT';
 
+
+
 export const increment = () => {
     return {
         type: INCREMENT
@@ -31,10 +33,18 @@ export const subtract = (val) => {
     };
 };
 
-export const storeResult = (val) => {
-    return {
+const saveResult = (val) =>{
+    return{
         type: STORE_RESULT, 
         value:val
+    };
+}
+
+export const storeResult = (val) => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(saveResult(val));
+        },2000);
     };
 };
 
